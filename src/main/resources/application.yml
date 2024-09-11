@@ -1,0 +1,10 @@
+server:
+  port: 9900
+logging:
+  level:
+    root: info
+spring:
+  mvc:
+    async:
+      request-timeout: -1
+

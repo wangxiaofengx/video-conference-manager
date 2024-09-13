@@ -7,6 +7,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Message {
 
+    private Integer sequence;
+
     private String type;
 
     private Object data;

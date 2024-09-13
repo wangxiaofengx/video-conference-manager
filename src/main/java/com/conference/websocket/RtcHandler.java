@@ -37,6 +37,8 @@ public class RtcHandler {
 
     private UserInfo userInfo;
 
+    private static AtomicInteger sequenceAtomic = new AtomicInteger(0);
+
     /**
      * 连接建立成功调用的方法
      */
@@ -133,6 +135,8 @@ public class RtcHandler {
     }
 
     public void sendMessage(Message message) throws IOException {
+        int sequence = sequenceAtomic.incrementAndGet();
+        message.setSequence(sequence);
         this.session.getBasicRemote().sendText(getObjectMapper().writeValueAsString(message));
     }
 

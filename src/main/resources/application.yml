@@ -1,10 +1,14 @@
 server:
   port: 9900
+#  ssl:
+#    key-store: classpath:keystore.jks
+#    key-store-password: 123456
+#    key-alias: tomcat
 logging:
   level:
     root: info
 spring:
   mvc:
     async:
-      request-timeout: -11
+      request-timeout: -1
 

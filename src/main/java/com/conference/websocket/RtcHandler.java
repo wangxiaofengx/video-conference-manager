@@ -37,8 +37,6 @@ public class RtcHandler {
 
     private UserInfo userInfo;
 
-    private static AtomicInteger sequenceAtomic = new AtomicInteger(0);
-
     /**
      * 连接建立成功调用的方法
      */
@@ -130,13 +128,7 @@ public class RtcHandler {
     /**
      * 实现服务器主动推送
      */
-    public void sendMessage(String message) throws IOException {
-        this.session.getBasicRemote().sendText(message);
-    }
-
-    public void sendMessage(Message message) throws IOException {
-        int sequence = sequenceAtomic.incrementAndGet();
-        message.setSequence(sequence);
+    public synchronized void sendMessage(Message message) throws IOException {
         this.session.getBasicRemote().sendText(getObjectMapper().writeValueAsString(message));
     }
 
